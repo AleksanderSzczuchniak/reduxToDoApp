@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ToDo from './ToDo'
-import Auth from './Auth'
+import Auth from './Auth/Auth'
 
 const App = () => (
   <Auth>
