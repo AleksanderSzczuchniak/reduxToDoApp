@@ -1,9 +1,12 @@
 import React from 'react'
 
-import ToDoApp from './ToDoApp/ToDo'
+import ToDo from './ToDo'
+import Auth from './Auth'
 
 const App = () => (
-  <ToDoApp />
+  <Auth>
+    <ToDo />
+  </Auth>
 )
 
 export default App
