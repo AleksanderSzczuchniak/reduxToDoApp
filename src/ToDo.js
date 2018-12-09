@@ -88,10 +88,10 @@ const ToDo = props => (
 )
 
 const mapStateToProps = state => ({
-    _newTaskText: state.toDo.newTaskText,
-    _allToDos: state.toDo.allToDos,
-    _filter: state.toDo.filter,
-    _visibleToDos: state.toDo.visibleToDos
+    _newTaskText: state.todo.newTaskText,
+    _allToDos: state.todo.allToDos,
+    _filter: state.todo.filter,
+    _visibleToDos: state.todo.visibleToDos
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -105,4 +105,7 @@ const mapDispatchToProps = dispatch => ({
     _deleteTaskAsyncAction: (key) => dispatch(deleteTaskAsyncAction(key)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ToDo)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ToDo)

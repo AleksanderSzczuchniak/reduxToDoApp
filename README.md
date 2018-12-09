@@ -1,3 +1,12 @@
+This is my last homework in InfoShareAcademy,
+Simple ToDo App with login and connected to database.
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

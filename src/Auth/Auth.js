@@ -4,14 +4,14 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import Forms from './Forms'
 
 import { connect } from 'react-redux'
-import { 
+import {
   initAuthChangeListeningAsyncAction,
   logOutAsyncAction,
   logInByGoogleAsyncAction,
   logInAsyncAction,
   passwordChangeAction,
   emailChangeAction
- } from '../State/auth'
+} from '../state/auth'
 
 class Auth extends React.Component {
   state = {
@@ -30,7 +30,7 @@ class Auth extends React.Component {
     this.setState({ password: event.target.value })
   }
 
- 
+
   render() {
     return (
       this.props._isUserLoggedIn ?

@@ -2,13 +2,13 @@ import { database } from '../firebaseConfig'
 import { filterArray } from '../utils'
 
 
-const Add_Task = 'toDo/Add_Task'
-const Render_Tak_List = 'toDo/Render_Tak_List'
-const Add_Task_Cleaner = 'toDo/Add_Task_Cleaner'
-const Filter_Task = 'toDo/Filter_Task'
-const Completed_Tasks = 'toDo/Completed_Tasks'
-const Tasks_ToDo = 'toDo/Tasks_ToDo'
-const All_Tasks = 'toDo/All_Tasks'
+const Add_Task = 'todo/Add_Task'
+const Render_Task_List = 'todo/Render_Task_List'
+const Add_Task_Cleaner = 'todo/Add_Task_Cleaner'
+const Filter_Task = 'todo/Filter_Task'
+const Completed_Tasks = 'todo/Completed_Tasks'
+const Tasks_ToDo = 'todo/Tasks_ToDo'
+const All_Tasks = 'todo/All_Tasks'
 
 const dbRef = uuid => (`users/${uuid}/tasks/`)
 
@@ -69,7 +69,7 @@ export const addNewTaskToDbAsyncAction = () => (dispatch, getState) => {
 }
 
 const renderTaskList = tasks => ({
-    type: Render_Tak_List,
+    type: Render_Task_List,
     tasks
 })
 
@@ -106,7 +106,7 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 newTaskText: action.text
             }
-        case Render_Tak_List:
+        case Render_Task_List:
             return {
                 ...state,
                 allToDos: action.tasks,
