@@ -3,9 +3,9 @@ Simple ToDo App with login and connected to database to save some task to do.
 You can login by using example@example.com password: example
 or if you are Mateusz Choma youre password is example and youre email.
 
+        visit this site to checkout this awesome app:
 
-
-
+            massive-creator.surge.sh
 
 
 
