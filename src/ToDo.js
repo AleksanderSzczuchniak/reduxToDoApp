@@ -25,7 +25,7 @@ const ToDo = props => (
             <TextField
                 hintText='Add task'
                 value={props._newTaskText}
-                onChange={props._addTaskInputChangeAction}
+                onChange={props._addTaskInputChange}
                 fullWidth={true}
             />
             <RaisedButton

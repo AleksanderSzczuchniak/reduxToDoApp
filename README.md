@@ -1,5 +1,7 @@
 This is my last homework in InfoShareAcademy,
-Simple ToDo App with login and connected to database.
+Simple ToDo App with login and connected to database to save some task to do.
+You can login by using example@example.com password: example
+or if you are Mateusz Choma youre password is example and youre email.
 
 
 
