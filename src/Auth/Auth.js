@@ -10,26 +10,13 @@ import {
   logInByGoogleAsyncAction,
   logInAsyncAction,
   passwordChangeAction,
-  emailChangeAction
+  loginChangeAction
 } from '../state/auth'
 
 class Auth extends React.Component {
-  state = {
-    email: '',
-    password: ''
-  }
-
   componentDidMount() {
     this.props._initAuthChangeListeningAsyncAction()
   }
-
-  onEmailChangeHandler = event => {
-    this.setState({ email: event.target.value })
-  }
-  onPasswordChangeHandler = event => {
-    this.setState({ password: event.target.value })
-  }
-
 
   render() {
     return (
@@ -52,31 +39,31 @@ class Auth extends React.Component {
         </div>
         :
         <Forms
-          email={this.state.email}
-          onEmailChangeHandler={this.onEmailChangeHandler}
-          password={this.state.password}
-          onPasswordChangeHandler={this.onPasswordChangeHandler}
-          onLogInClick={this._logInAsyncAction}
+          email={this.props._email}
+          onEmailChangeHandler={this.props._loginChangeAction}
+          password={this.props._password}
+          onPasswordChangeHandler={this.props._passwordChangeAction}
+          onLogInClick={this.props._logInAsyncAction}
           onLogInByGoogleClick={this.props._logInByGoogleAsyncAction}
         />
     )
   }
 }
 
-
-
 const mapStateToProps = state => ({
   _isUserLoggedIn: state.auth.isUserLoggedIn,
   _email: state.auth.email,
+  _password: state.auth.password
 })
 
 const mapDispatchToProps = dispatch => ({
   _initAuthChangeListeningAsyncAction: () => dispatch(initAuthChangeListeningAsyncAction()),
   _logOutAsyncAction: () => dispatch(logOutAsyncAction()),
   _logInByGoogleAsyncAction: () => dispatch(logInByGoogleAsyncAction()),
-  _logInAsyncAction: (email, password) => dispatch(logInAsyncAction(email, password)),
-  _emailChangeAction: (event) => dispatch(emailChangeAction(event.target.value)),
-  _passwordChangeAction: (event) => dispatch(passwordChangeAction(event.target.value))
+  _logInAsyncAction: () => dispatch(logInAsyncAction()),
+  _passwordChangeAction: (event) => dispatch(passwordChangeAction(event.target.value)),
+  _loginChangeAction: (event) => dispatch(loginChangeAction(event.target.value)),
+
 })
 
 export default connect(

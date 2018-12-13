@@ -1,60 +1,67 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import { List, ListItem } from 'material-ui/List'
+import Paper from 'material-ui/Paper'
+import { connect } from 'react-redux'
 import DeleteIcon from 'material-ui/svg-icons/action/delete'
 import IconButton from 'material-ui/IconButton'
+import { List, ListItem } from 'material-ui/List'
 import { Checkbox } from 'material-ui'
 
+
 import {
-    addTaskInputChange,
+    toogleTasksAsyncAction,
     filterInputChange,
-    showCompletedTasks,
-    showTasksToDo,
-    showAllTasks,
-    addNewTaskToDbAsyncAction,
-    toggleToDoAsyncAction,
     deleteTaskAsyncAction,
-} from './state/todo'
+    addTaskAsyncAction,
+    addTaskInputChange,
+    showCompleteTaskAction,
+    showUncompleteTaskAction,
+    showTasks
+} from './state/toDo'
 
 const ToDo = props => (
     <Paper>
+        <TextField
+            hintText='Zapisz nowe zadanie'
+            value={props._textTask}
+            onChange={props._addTaskInputChange}
+        />
         <div>
-            <TextField
-                hintText='Add task'
-                value={props._newTaskText}
-                onChange={props._addTaskInputChange}
-                fullWidth={true}
-            />
+
             <RaisedButton
-                label='Add task'
+                label='Dodaj zadanie'
                 primary={true}
-                onClick={props._addNewTaskToDbAsyncAction}
-                fullWidth={true}
+                onClick={props._addTaskAsyncAction}
             />
-            <TextField
-                hintText='Find task'
-                onChange={props._filterInputChangeAction}
-                fullWidth={true}
+        </div>
+        <br />
+        <TextField
+            hintText='Szukaj zadania'
+            onChange={props._filterInputChange}
+        />
+        <div>
+
+            <RaisedButton
+                label='Wszystkie zadaania'
+                primary={true}
+                onClick={props._showTasks}
             />
         </div>
         <div>
+
             <RaisedButton
-                label='All tasks'
-                secondary={true}
-                onClick={props._showAllTasks}
+                label='Zadania wykonane'
+                primary={true}
+                onClick={props._showCompleteTaskAction}
             />
+        </div>
+        <div>
+
             <RaisedButton
-                label='Completed tasks'
-                secondary={true}
-                onClick={props._showCompletedTasks}
-            />
-            <RaisedButton
-                label='Uncompleted tasks'
-                secondary={true}
-                onClick={props._showTasksToDo}
+                label='Zadania niewykonane'
+                primary={true}
+                onClick={props._showUncompleteTaskAction}
             />
         </div>
         <List>
@@ -68,8 +75,8 @@ const ToDo = props => (
                             style={todo.completed ? { textDecoration: 'line-through' } : { textDecoration: 'none' }}
                             leftCheckbox={
                                 <Checkbox
-                                    checked={todo.completed}
-                                    onCheck={() => props._toggleToDoAsyncAction(todo)}
+                                    defaultChecked={todo.completed}
+                                    onCheck={() => props._toggleTasksAsyncAction(todo)}
                                 />
                             }
                             rightIconButton={
@@ -88,21 +95,22 @@ const ToDo = props => (
 )
 
 const mapStateToProps = state => ({
-    _newTaskText: state.todo.newTaskText,
-    _allToDos: state.todo.allToDos,
-    _filter: state.todo.filter,
-    _visibleToDos: state.todo.visibleToDos
+    _allToDos: state.toDo.allToDos,
+    _visibleToDos: state.toDo.visibleToDos,
+    _textTask: state.toDo.textTask,
+    _currentfilter: state.toDo.currentfilter
+
 })
 
 const mapDispatchToProps = dispatch => ({
-    _showCompletedTasks: () => dispatch(showCompletedTasks()),
-    _showTasksToDo: () => dispatch(showTasksToDo()),
-    _showAllTasks: () => dispatch(showAllTasks()),
+    _addTaskAsyncAction: () => dispatch(addTaskAsyncAction()),
     _filterInputChange: event => dispatch(filterInputChange(event.target.value)),
+    _showTasks: () => dispatch(showTasks()),
+    _showCompleteTaskAction: () => dispatch(showCompleteTaskAction()),
     _addTaskInputChange: (event) => dispatch(addTaskInputChange(event.target.value)),
-    _addNewTaskToDbAsyncAction: () => dispatch(addNewTaskToDbAsyncAction()),
-    _toggleToDoAsyncAction: (task) => dispatch(toggleToDoAsyncAction(task)),
-    _deleteTaskAsyncAction: (key) => dispatch(deleteTaskAsyncAction(key)),
+    _toggleTasksAsyncAction: (task) => dispatch(toogleTasksAsyncAction(task)),
+    _showUncompleteTaskAction: () => dispatch(showUncompleteTaskAction()),
+    _deleteTaskAsyncAction: (key) => dispatch(deleteTaskAsyncAction(key))
 })
 
 export default connect(
